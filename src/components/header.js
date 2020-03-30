@@ -5,7 +5,6 @@ import styled from "styled-components"
 
 const Wrapper = styled.header`
   background: linear-gradient(to right, rgb(146, 254, 157) 0%, rgb(0, 201, 255) 100%);
-  margin-bottom: 1.45rem;
 `
 const Nav = styled.div`
   margin: 0 auto;
@@ -44,6 +43,7 @@ const Header = ({ siteTitle }) => (
         <NavItem to="/">{siteTitle}</NavItem>
       </NavLeft>
       <NavRight>
+        <NavItem to="/">Home</NavItem>
         <NavItem to="/docs">Docs</NavItem>
         <NavItem to="/pricing">Pricing</NavItem>
         <NavItem to="/blog">Blog</NavItem>
