@@ -3,7 +3,6 @@ import { Link } from "gatsby"
 import styled from 'styled-components';
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
 const intro = {
@@ -105,7 +104,7 @@ const IndexPage = () => (
     <SEO title="Home" />
     <SectionIntro>
       <h1>{intro.title}</h1>
-      <img src={intro.cover_img}/>
+      <img alt="" src={intro.cover_img}/>
       <ButtonContainer>
         <Button to="docs">Getting Started</Button>
         <Button to="docs">Documentation</Button>
@@ -113,10 +112,10 @@ const IndexPage = () => (
     </SectionIntro>
     <SectionFeatures>
       <FeatureList>
-        {features.map((feature) => {
+        {features.map((feature, i) => {
           return (
-            <FeatureItem>
-              <FeatureIcon src={feature.icon} />
+            <FeatureItem key={i}>
+              <FeatureIcon src={feature.icon} alt=""/>
               <FeatureDetail>
                 <h2>{feature.title}</h2>
                 <p>{feature.detail}</p>
