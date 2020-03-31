@@ -1,22 +1,38 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
+import Layout from "../components/layout"
+import styled from 'styled-components';
+import SEO from "../components/seo"
+
+const Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 0 1.0875rem 1.45rem;
+  display: flex;
+  flex-direction: column;
+`
+const Body = styled.div`
+  margin-top: 50px;
+`
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark
+  const { html } = markdownRemark
   return (
-    <div className="blog-post-container">
-      <div className="blog-post">
-        <h1>{frontmatter.title}</h1>
-        <h2>{frontmatter.date}</h2>
-        <div
-          className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      </div>
-    </div>
+    <Layout>
+      <SEO title="" />
+      <Wrapper>
+        <Body className="blog-post">
+          <div
+            className="blog-post-content"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        </Body>
+        <Link to="/">Go back to the homepage</Link>
+      </Wrapper>
+    </Layout>
   )
 }
 

@@ -1,7 +1,6 @@
 import React from "react"
 import styled from 'styled-components';
-import { graphql } from 'gatsby'
-import { Link } from "gatsby"
+import { graphql, Link } from 'gatsby'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -12,6 +11,38 @@ const Wrapper = styled.div`
   padding: 0 1.0875rem 1.45rem;
   display: flex;
   flex-direction: column;
+`
+const BlogItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items: center;
+  margin-top: 50px;
+  color: #333;
+
+  a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #333;
+    transition: all .2s;
+
+    &:hover {
+      color: rgb(66, 99, 247)
+    }
+  }
+`
+const BlogDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+
+  div {
+    margin-top: 10px;
+    color: #666;
+  }
+`
+const CoverImg = styled.img`
+
 `
 
 const Blog = ({ data }) => {
@@ -24,9 +55,17 @@ const Blog = ({ data }) => {
           edges.map((edge) => {
             const { frontmatter } = edge.node;
             return (
-              <h1 key = {frontmatter.path}>
-                {frontmatter.title}
-              </h1>
+              <BlogItem key={frontmatter.path}>
+                <CoverImg src="https://media.giphy.com/media/L8K62iTDkzGX6/giphy.gif"/>
+                <BlogDetail>
+                  <Link to={frontmatter.path}>
+                    {frontmatter.title}
+                  </Link>
+                  <div>{frontmatter.date}</div>
+                  <div>{frontmatter.author}</div>
+                  <div>{frontmatter.snippet}</div>
+                </BlogDetail>
+              </BlogItem>
             )
           })
         }
@@ -47,6 +86,8 @@ export const query = graphql`
             title
             path
             date
+            author
+            snippet
           }
         }
       }
